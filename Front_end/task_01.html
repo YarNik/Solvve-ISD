@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Checkout form</title>
+  <style>
+  
+	h1 { 
+		margin:0 50% 0 0;
+		color: #3e3e3e;
+	}
+	div.form {
+		background: linear-gradient(135deg, transparent 55%, rgba(190,202,254,0.2) 50%, rgba(197,193,252,0.2)),
+					linear-gradient(to top, #1f2152, #b8c2fd);
+		width: 48%;
+		height: 870px;
+		margin: 0;
+	}
+	div.form_into { 
+		width: 38%;
+		position: absolute;
+		top: 6%;
+		left: 5%;
+		background: linear-gradient(to top, #e4e3e9, #f9faff);
+		box-shadow: 0 0 15px rgba(0,0,0,0.5)
+		
+	}
+	div {
+		width: 90%;
+		margin: 15px auto;
+		text-align: center;
+		font: bold 16px sans-serif;
+		color: #3e3e3e;
+	}
+	input, select, span { 
+		margin: 0 5%;
+		font: bold 16px sans-serif;
+		padding: 10px;
+		background: #ffffff;
+		color: #cccccc;
+		border-style: solid;
+		border-width: 2px;
+		border-color: #cccccc;
+	}
+	select{ 
+		color: #3e3e3e;
+	}
+	div.radio { 
+		text-align: left;
+		margin: 15px 0 15px 11%; 
+	}
+	input:checked {
+		background-color: #b85dca;
+	}
+	input.radio { 
+		margin: 0 1% 0 3%;
+	}
+	input.radio_1 { 
+		margin: 0 1% 0 0%;
+	}
+	textarea { 
+		font: bold 16px sans-serif;
+		padding: 10px;
+		background: #ffffff;
+		color: #cccccc;
+		border-style: solid;
+		border-width: 2px;
+		border-color: #cccccc;
+	}
+	button { 
+		font: bold 16px sans-serif;
+		margin:2% 0 3% 64%;
+		padding: 13px 28px;
+		color: white;
+		background: #b85dca;
+		border-width: 0;
+	}
+	
+  </style>
+ </head>
+ <body>
+	<div class="form">
+		<div class="form_into">
+		<form>
+			<p><h1>Checkout form</h1></p>
+			<hr noshade color="#cccccc">
+			<div><input type="text" value="First name" style="width:35%">
+				<input type="text" value="Last name" style="width:35%"></div>
+			<div><input type="text" value="E-mail" style="width:35%">
+				<input type="text" value="Phone" style="width:35%"></div>
+			<hr noshade color="#cccccc">
+			<div><select style="width:30%"><option value="Country" selected>Country</option></select>
+				<input type="text" value="City" style="width:18%">
+				<input type="text" value="Post code" style="width:12%"></div>
+			<div><input type="text" value="Address" style="width:85%"></div>
+			<div><textarea rows="3" style="width:85%">Additional info</textarea></div>
+			<hr noshade color="#cccccc">
+			<div class="radio"><input type="radio" class="radio_1" checked> Visa
+				<input type="radio" class="radio" > Mastercard
+				<input type="radio" class="radio" > PayPal</div>
+			<div><input type="text" value="Name on card" style="width:85%"></div>
+			<div><input type="text" value="Card numberd" style="width:60%">
+				<input type="text" value="CVV2" style="width:11%"></div>
+			<div><span>Expiration date</span>
+				<select style="width:30%"><option value="Month" selected>Month</option></select>
+				<input type="text" value="Year" style="width:13%"></div>
+			<hr noshade color="#cccccc">
+			<button name="submit">Continue</button>
+		</form>
+		</div>
+	</div>
+ </body>
+</html>
