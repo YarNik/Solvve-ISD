@@ -15,8 +15,7 @@ namespace ConsoleApp1
         }
 
         class PrinterYellow : Printer
-        {
-           
+        {           
             public override void Print(string value) 
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -27,8 +26,7 @@ namespace ConsoleApp1
         }
 
         class PrinterGreen : Printer
-        {
-           
+        {           
             public override void Print(string value)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -46,10 +44,15 @@ namespace ConsoleApp1
             PrinterGreen pGreen = new PrinterGreen();
             pGreen.Print("Print PrintGreen");
 
-            Printer pBase2 = pGreen;                             // почему то не работает приведение типов
-            pBase2.Print("Print Printer");
+            Printer pBase2 = pGreen;
+            pBase2.Print("Print Printer2");
 
-            PrinterYellow pYellow2 = (PrinterYellow)pBase;        // не работает приведение типов (выбрасывает Exeption)
+            Printer pBase3 = new PrinterYellow();
+            PrinterYellow pYellow2 = (PrinterYellow)pBase3;
+            pYellow2.Print("Print PrinterYellow2");
+
+            Printer pBase4 = new PrinterGreen();
+            ((PrinterGreen)pBase4).Print("Print PrintGreen2");
 
         }
     }
