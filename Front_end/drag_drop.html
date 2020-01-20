@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Drag & Drop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <style>
+   [class*="col-"] {
+    background-color: #f7f7f7;
+    border-right: 4px solid #fff;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;    
+   }
+   .item {
+		border: 1px solid black;
+		margin-top: 10px;
+		text-align: left;
+		background-color: #eee;
+		cursor: pointer;
+   }
+      
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="row">
+    <div class="col-4">
+		<h2 class="toDo" id="todo">to do</h2>			
+	</div>	
+    <div class="col-4">
+		<h2 class="inProgress">in progress</h2>		
+	</div>
+    <div class="col-4">
+		<h2 class="finished">finished</h2>
+	</div>
+	</div>
+  </div>
+  
+  <script>
+	const list = ["Make breakfast", "Go over", "To wash a car", "Fix the bike",	"To do the task", "Buy light bulbs", "Walk the dog", "Call customers", "Sell ​a motorcycle"];	
+	for (let i = list.length - 1; i >= 0; i--) 
+	{
+		let div = document.createElement('div');
+		div.className = "col item";
+		div.innerHTML = list[i];
+		todo.after(div);
+	}
+	let items = document.querySelectorAll('.item');
+	let column = document.querySelector('.col-4');
+	let centerXtoDo = calcCenterX(document.querySelector('h2.toDo'));
+	let centerXinProgress = calcCenterX(document.querySelector('h2.inProgress'));
+	let centerXfinished = calcCenterX(document.querySelector('h2.finished'));
+	let arrCenterY = [];
+	for(let elem of items) {
+		arrCenterY.push(calcCenterY(elem));
+	}
+	
+	function calcCenterX(rect) {
+		let leftX = rect.getBoundingClientRect().left;
+		let rightX = rect.getBoundingClientRect().right;
+		let centerX = leftX + (rightX - leftX) / 2;
+		return centerX;
+	}
+	
+	function calcCenterY(rect) {
+		let topY = rect.getBoundingClientRect().top;
+		let bottomY = rect.getBoundingClientRect().bottom;
+		let centerY = topY + (bottomY - topY) / 2;
+		return centerY;
+	}
+	
+	const columnHeight = document.querySelector('.col-4').offsetHeight;
+	for(let elem of items) {
+		const elemWidth = elem.offsetWidth;		
+		elem.onmousedown = function(event) { 
+	
+			  elem.style.position = 'absolute';
+			  elem.style.zIndex = 1000;  
+			  document.body.append(elem);
+			  moveAt(event.pageX, event.pageY);
+			  
+			  function moveAt(pageX, pageY) {
+				if (pageX < elem.offsetWidth / 2) pageX = elem.offsetWidth / 2;
+				if (pageX > document.documentElement.clientWidth - elem.offsetWidth / 2) 
+					{ pageX = document.documentElement.clientWidth - elem.offsetWidth / 2; }
+				if (pageY > columnHeight - elem.offsetHeight ) 
+					{ pageY = columnHeight - elem.offsetHeight; }
+				if (pageY < document.querySelector('h2').offsetHeight + elem.offsetHeight ) 
+					{ pageY = document.querySelector('h2').offsetHeight + elem.offsetHeight; }	
+				elem.style.left = pageX - elem.offsetWidth / 2 + 'px';
+				elem.style.top = pageY - elem.offsetHeight / 2 + 'px';
+				constSize();	
+			  }
+
+			  function onMouseMove(event) {
+				moveAt(event.pageX, event.pageY);
+			  }
+
+			  document.addEventListener('mousemove', onMouseMove);  
+			  
+			  function constSize() {
+				elem.style.width = elemWidth + "px";
+				column.style.height = columnHeight + "px";
+			  }
+			  
+			  function toCenterX(rect) {
+				let rectCenterX = calcCenterX(rect);
+				let toToDo = Math.abs(rectCenterX - centerXtoDo);
+				let toInProgress = Math.abs(rectCenterX - centerXinProgress);
+				let toFinished = Math.abs(rectCenterX - centerXfinished);
+				if (toToDo < toInProgress && toToDo < toFinished)
+					{ rect.style.left = (centerXtoDo - elem.offsetWidth / 2) + "px"; }
+				if (toInProgress < toToDo && toInProgress < toFinished)
+					{ rect.style.left = (centerXinProgress - elem.offsetWidth / 2) + "px"; }
+				if (toFinished < toToDo && toFinished < toInProgress)
+					{ rect.style.left = (centerXfinished - elem.offsetWidth / 2) + "px"; }		
+			  }
+			  
+			  function toFreeCell(rect) {
+				let rectX = calcCenterX(rect);
+				for (let i = 0; i < arrCenterY.length; i++) {
+					if (document.elementFromPoint(rectX, arrCenterY[i]).className != "col item")
+						{ rect.style.top = (arrCenterY[i] - elem.offsetHeight ) + "px"; break;	}
+				}
+			  }  
+			  
+			  elem.onmouseup = function() {
+				document.removeEventListener('mousemove', onMouseMove);	
+				constSize();
+				toCenterX(elem);
+				toFreeCell(elem);	
+				elem.onmouseup = null;	
+					}			 
+				}
+	}
+  </script>
+ 
+ </body>
+</html>
