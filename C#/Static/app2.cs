@@ -2,9 +2,9 @@
 
 namespace ConsoleApp2
 {
-    static class Sorting
+    public static class ArraySorting
     {
-        public static int[] Sort(int[] arr)
+        public static int[] Sorting(this int[] arr)
         {
             int temp;
             for (int i = 0; i < arr.Length - 1; i++)
@@ -27,8 +27,8 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             int[] array = { 12, 32, 31, 510, 18, 44, 5 };
-            int[] sortedArray = Sorting.Sort(array);
-            for (int i = 0; i < sortedArray.Length; i++) { Console.WriteLine(sortedArray[i]); }
+            array.Sorting();
+            for (int i = 0; i < array.Length; i++) { Console.WriteLine(array[i]); }
 
             Console.ReadLine();
 
