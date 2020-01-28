@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>form_booking</title>  
+        <style> 
+            form {
+                border: 2px solid grey;
+                padding: 10px 25px;
+                margin: 20px;
+                background-color: rgb(247, 242, 201);               
+            }
+            input[type="date"] {
+                background-color: rgb(255, 237, 78);
+                border: 1px solid grey;
+                font: 10pt/8pt sans-serif;
+            }     
+        </style>
+    </head>
+    <body>
+     
+        <form name="form">
+            <h4>Стоимость проживания (грн/сутки): </h4> 
+            <input type="radio" name="hotels" checked="checked" value="500" data-bind="value: radioPrice1"/><span>445</span><br>
+            <input type="radio" name="hotels" value="750" data-bind="value: radioPrice2"/><span>500</span><br>
+            <input type="radio" name="hotels" value="750" data-bind="value: radioPrice3"/><span>630</span><br>
+            <input type="radio" name="hotels" value="750" data-bind="value: radioPrice4"/><span>750</span><br>
+            <input type="radio" name="hotels" value="900" data-bind="value: radioPrice5"/><span>900</span><br>
+            <input type="radio" name="hotels" value="1200" data-bind="value: radioPrice6"/><span>1200</span><br>
+            <h4> Дата въезда в отель: </h4>
+            <input type="date" data-bind="value: dateStart"><br>
+            <h4>Дата выезда из отеля: </h4>
+            <input type="date" data-bind="value: dateEnd"><br>
+            <h3>Стоимость проживания <span data-bind="calculate: dateEnd^dateStart"></span>
+                 дн. в выбранном отеле составляет <span data-bind="calculate: resultDate*radioPrice"></span> грн.</h3>             
+                          
+        </form>
+
+        <script src="myKo.js"></script>
+        <script>
+            let viewModel ={            
+                dateStart: "2020-01-28",
+                dateEnd: "2020-01-28",
+                resultDate: 0,
+                radioPrice: 500              
+                };
+            myKo.applyBindings(viewModel);        
+
+        </script>      
+    </body>
+</html>
