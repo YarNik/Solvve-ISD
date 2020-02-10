@@ -4,7 +4,7 @@ namespace ConsoleApp2
 {
     class MyList<T>
     {
-        public T[] array;
+        T[] array;
         public int Length
         {
             get { return array.Length; }
@@ -31,9 +31,9 @@ namespace ConsoleApp2
         {
             MyList<int> myList = new MyList<int>();
             myList.Add(23);
-            Console.WriteLine($" Добавили {myList.array[0]}");
+            Console.WriteLine($" Добавили {myList[0]}");
             myList.Add(45);
-            Console.WriteLine($" Добавили {myList.array[1]}");
+            Console.WriteLine($" Добавили {myList[1]}");
             Console.WriteLine($" Длина myList - {myList.Length}");
             Console.WriteLine($" Первый элемент - {myList[0]}");
 
