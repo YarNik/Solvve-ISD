@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Grid</title> 
+        <script src="https://kit.fontawesome.com/e0338620bf.js" crossorigin="anonymous"></script>
+        <style>  
+
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .container {                     
+                text-align: center;
+            }
+
+            .header {                            
+                justify-content: space-around; 
+                align-items: center;
+                vertical-align: middle;
+                background: #efefef;
+                padding-bottom: 5px;
+                font-size: small; 
+            }
+            #highHeader {           
+                background: #615a57;
+                padding: 10px;                
+            }
+            #highHeader > a {
+                color: white;
+            }
+            #user {
+                margin-left: 30px;
+                color: #f69e78;
+            }
+            .wrapperheader {    
+                display: grid;               
+                align-items: center; 
+                place-content: center center;              
+                grid-template-columns: 70px 290px 120px 100px 160px;           
+                background: #efefef; 
+                font-size: small;                       
+            }
+            div.wrapperheader > span {
+                margin: 3px 0;
+            } 
+                       
+            #icons {
+                color: #c4c4c4; 
+            }
+            a{
+                text-decoration: none; 
+                margin: 0 15px; 
+            } 
+            button#order, button.detail {
+                height: 24px;
+                color: white;
+                background-color: #f69e78;
+                border-width: 0;
+                border-radius: 12px;
+                padding: 0px 15px;
+            }
+            button#order {
+                width: 160px;
+            }
+            span#search {
+                height: 26px;
+                border-width: 0;
+                border-radius: 13px;               
+            }
+            input {
+                height: 26px;
+                border-width: 0;
+                border-radius: 13px;
+                padding: 0px 10px;
+                color: #c6c6c6;
+            }
+            i.fa-search, i.fa-list-alt, i.fa-truck, i.fa-boxes, i.fa-award, i.fa-readme {
+                color: #f69e78;
+            }
+            span#Stroymart {
+                margin: 10px 0;
+            }
+            div.header > a {
+                color: #676767;
+            }
+
+            button.detail {
+                height: 22px;
+                border-radius: 11px;
+            }
+            div#shock {
+                background: #fff4bd;
+                padding-left: 25px;
+                height: 300px;
+                width: 450px;
+                border-radius: 11px; 
+                text-align: left;
+                margin-right: 10px;                 
+            }
+            span#ceresit {
+                font-size: x-large;
+                color: white;
+                background-color: black;
+                padding: 0 5px;
+                float: right;
+                margin: 15px;
+            }
+            div#inShock {
+                font-size: xx-large;               
+                margin-top: 40px;
+                font-weight: bold;                                
+            }
+            button#detail {
+                margin-top: 40px;
+            }
+            img#wow {               
+                height: 62%;
+                display: block;               
+                position: relative;
+                bottom: 38.5%;
+                left: 55%;
+            }
+            button#left, button#right {
+                position: relative;
+                color: #676767;
+                background-color: white;
+                bottom: 276px;
+                border-width: 0;
+                height: 22px;
+                width: 22px;
+                border-radius: 11px;               
+            }
+            button#left {
+                left: -61px;
+            }
+            button#right {                
+                right: -97.5%;
+            }
+            img.knauf, img.brick {                
+                height: 145px;               
+                width: 230px;
+                border-radius: 11px; 
+            }
+            
+            div.main {    
+                display: grid;
+                place-content: center center;
+                grid-template-areas:
+                "shock knauf"
+                "shock brick";
+                grid-row-gap: 10px;
+                grid-column-gap: 10px;
+                margin: 15px 0;
+            } 
+            div#shock {
+                grid-area: shock;
+            }
+            div.knauf {
+                grid-area: knauf;
+            }
+            div.brick {
+                grid-area: brick;
+            }
+           
+            span.knauf1, span.knauf2, button.knauf3 { position: relative; }
+            span.brick1, span.brick2, button.brick3 { position: relative; }
+            div.knauf, div.brick {
+                height: 145px;               
+                width: 230px;
+            }
+            div.knauf  span, div.brick span {
+                color: white;
+            }
+            span.knauf1, span.knauf2, span.brick1, span.brick2 {
+                bottom: 140px;               
+            }
+            span.knauf1 {                
+                left: 40px;
+            }
+            span.knauf2 {               
+                left: 32px;
+            }
+            button.knauf3, button.brick3 {
+                bottom: 80px;
+                left: 50px;
+            }
+            span.brick1 {                
+                left: -65px;
+            }
+            span.brick2 {                
+                left: -57px;
+            }
+            div.footer {   
+                width: 730px; 
+                margin: auto;            
+                display: grid;                
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 2vw;
+            }
+            div.footer > div {
+                font-size: 8pt;
+                margin: 10px 15px;                                      
+            } 
+            div.footer > div span {
+                font-weight: bold;
+                display: block;
+                margin-top: 5px;
+                margin-bottom: -8px;                
+            }
+            div#what {
+                font-size: x-large;
+                font-weight: bold;
+                margin-top: 30px;
+            }              
+
+            @media (min-width: 1000px) {           
+                .container { width: 1000px; margin: auto; }
+            }    
+            @media (max-width: 760px) {           
+                .wrapperheader { grid-template-columns: 160px 290px 120px 100px; }
+            }
+            @media (max-width: 670px) {           
+                .wrapperheader { grid-template-columns: 100px 290px 120px; }
+            } 
+            @media (max-width: 500px) {           
+                .wrapperheader { grid-template-columns: 290px; }
+            } 
+            @media (max-width: 730px) {           
+                div.main {                       
+                    grid-template-areas:
+                    "shock"
+                    "knauf"
+                    "brick"                  
+                    }
+                div.knauf, div.brick {
+                margin-left: 130px;
+                } 
+            }
+            @media (max-width: 730px) {           
+                div.footer {   
+                width: 365px; 
+                grid-template-columns: repeat(2, 1fr);
+                }
+            }               
+        </style>
+    </head>
+
+    <body> 
+        <div class="container">
+            <div class="header" id="highHeader">
+               <a href="">О нас</a>
+               <a href="">Доставка</a>
+               <a href="">Оплата</a>
+               <a href="">Оптовым покупателям</a>
+               <a href="">Статьи</a>
+               <a href="">Контакты</a>
+               <i class="fas fa-user fa-lg" id="user"></i>
+               <a href="">Личный кабинет</a>
+            </div>           
+            <div class="wrapperheader">
+                <span id="Stroymart">
+                    <img src="https://cdn1.flamp.ru/a0de33ba751ac660d08b9a1278f3d226.png" 
+                     width="60" height="70" alt="Строймарт">
+                </span>
+                <span>
+                    <input type="text" size="30" id="search" value="Например: гипсокартон стеневой">
+                    <i class="fas fa-search fa-lg"></i>
+                </span>
+                <span>
+                    (099)-000-771-1                      
+                </span>
+                <span id="icons">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <i class="fas fa-heart fa-lg"></i>
+                    <i class="fas fa-balance-scale fa-lg"></i>
+                </span>
+                <span>
+                <button id="order">
+                    Оформить заказ
+                </button>
+                </span>
+            </div>
+            <div class="header">
+               <i class="far fa-list-alt fa-lg"></i>
+               <a href="">Каталог товаров</a>
+               <a href="">Акции</a>
+               <a href="">Рекомендуемое</a>
+               <a href="">Популярное</a>
+               <a href="">Товары со скидкой</a>
+               <a href="">Бренды</a>
+            </div>
+
+            <div class="main">
+                <div id="shock">
+                    <span id="ceresit">Ceresit</span><br>                   
+                    <div id="inShock">САМИ В ШОКЕ!</div><br>                    
+                    <span>При покупке любого продукта</span><br>                 
+                    <span>бренда Ceresit, получай 100 грн</span><br>
+                    <span>на следующую покупку.</span><br>
+                    <button class="detail" id="detail">
+                        Подробнее <i class="fas fa-angle-double-right"></i>
+                    </button>
+                    <img src="https://lh3.googleusercontent.com/proxy/BWyC41n4R8FYcfmK9avoBA5gNtVzJlNgWz5rtUAPotfRwlJTPv5RKCpoHNijj0UJtL0UqEEGiDRYs4PS2seR"
+                         alt="Ух ты" id="wow">
+                    <button id="right">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                    <button id="left">
+                        <i class="fas fa-angle-left"></i>
+                    </button>                   
+                </div>                  
+                    <div class="knauf">                 
+                        <img src="https://www.foveotech.com.ua/_cache/uploads/ua/professional/20/1000-1000/fit/nakadanie-gruntu.jpg?1511346319452"
+                        class="knauf">
+                        <span class="knauf1">Штукатурка Knauf</span><br>
+                        <span class="knauf2">всего от 117 грн</span><br>
+                        <button class="detail knauf3">
+                            Подробнее <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                    <div class="brick">                           
+                        <img src=" https://lh5.googleusercontent.com/proxy/fVaBy_oQpndubLsXoCY1Qiec9iPvwTOJKM7_h0ISqslhAUbSNpTa7G9Iy___3JDjclP34GrB4r0P1o0gMDMqrUX4lMi_lNY7tnIQHNGScUndmqkBdFxeTQ"
+                        class="brick"> 
+                        <span class="brick1">Кирпич по</span><br>
+                        <span class="brick2">цене завода</span><br>
+                        <button class="detail brick3">
+                            Подробнее <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>                  
+            </div>
+            <div class="footer">
+                <div>
+                    <i class="fas fa-truck fa-3x"></i><br>
+                    <span>Бесплатная доставка</span><br>
+                    <span>При заказе от 8000 грн,</span><br>
+                    <span>бесплатная доставка по всему</span><br>
+                    <span>Харькову</span>
+                </div>
+                <div>
+                    <i class="fas fa-boxes fa-3x"></i><br>
+                    <span>Огромный ассортимент</span><br>
+                    <span>Более 10000</span><br>
+                    <span>строителных материалов</span><br>
+                    <span>на одном сайте</span>
+                </div>
+                <div>
+                    <i class="fas fa-award fa-3x"></i><br>
+                    <span>Бонусная программа</span><br>
+                    <span>Приятные бонусы и акции</span><br>
+                    <span>для постоянных</span><br>
+                    <span>покупателей</span>
+                </div>
+                <div>
+                    <i class="fab fa-readme fa-3x"></i><br>
+                    <span>Полезно почитать</span><br>
+                    <span>Статьи, обзоры, советы и</span><br>
+                    <span>рекомендации по</span><br>
+                    <span>строительству</span>
+                </div>
+            </div>
+            <div id="what">Что вы строите?</div>
+        </div>
+        
+    </body>
+</html>
