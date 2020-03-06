@@ -9,15 +9,15 @@ namespace SavePage
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the needed site (selin.in.ua)");
+            Console.WriteLine("Enter the needed site (selin.in.ua/index.html)");
             string siteName = Console.ReadLine();
-            Console.WriteLine("Enter the file name (savedPage)");
+            Console.WriteLine("Enter the file name (output.html)");
             string fileName = Console.ReadLine();
-            //string fileName = "savedPage";
-            //string siteName = "selin.in.ua";
+            //string fileName = "output.html";
+            //string siteName = "selin.in.ua/index.html";
             DirectoryInfo dirInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);            
-            var directory = dirInfo.Parent.Parent.Parent;       // file will be saved in root directory of project
-            string writePath = String.Format(@"{0}\{1}.txt", directory, fileName);
+            var directory = dirInfo.Parent.Parent.Parent;     // file will be saved in root directory of project
+            string writePath = String.Format(@"{0}\{1}", directory, fileName);
             string site = String.Format("http://www.{0}", siteName);
             try
             {
