@@ -13,7 +13,7 @@ namespace SavePageV3
             //Console.WriteLine("Enter the file name (output.html)");
             //string fileName = Console.ReadLine();
             string fileName = "output.html";            
-            string fullUrl = "http://selin.in.ua/solvve/html.html";
+            string fullUrl = "http://info.cern.ch/hypertext/WWW/TheProject.html";
             DirectoryInfo dirInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             var directory = dirInfo.Parent.Parent.Parent;     // file will be saved in root directory of project
             string writePath = String.Format(@"{0}\{1}", directory, fileName);
@@ -22,8 +22,7 @@ namespace SavePageV3
             {
                 string fullUrlNotHttp = fullUrl.IndexOf("http://") == -1 ? fullUrl : fullUrl.Substring(7);
                 string host = fullUrlNotHttp.IndexOf("/") == -1 ? fullUrlNotHttp : fullUrlNotHttp.Substring(0, fullUrlNotHttp.IndexOf("/"));
-                string pageAddr = fullUrlNotHttp.IndexOf("/") == -1 ? "" : fullUrlNotHttp.Substring(fullUrlNotHttp.IndexOf("/") + 1);                
-                string message = String.Format("GET /{0} HTTP/1.0\nHost: {1}\n\n", pageAddr, host);
+                string message = $"GET {fullUrl} HTTP/1.0\r\nHost: {host}\r\n\r\n";               
                 var port = 80;
 
                 var client = new TcpClient(host, port);
