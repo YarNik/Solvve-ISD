@@ -15,15 +15,15 @@ namespace SimpleServer
                 var localAddr = IPAddress.Parse("127.0.0.1");
                 var server = new TcpListener(localAddr, port);
                 server.Start();
-                //var bytes = new byte[1024];
+                var bytes = new byte[1024];
                 while (true)
                 {
                     Console.WriteLine("Waiting for connection...");
                     var client = server.AcceptTcpClient();
                     NetworkStream stream = client.GetStream();
-                    //var bytesReadCount = stream.Read(bytes, 0, bytes.Length);
-                    //string request = System.Text.Encoding.UTF8.GetString(bytes, 0, bytesReadCount);
-                    //Console.WriteLine("resive: {0}", request);
+                    var bytesReadCount = stream.Read(bytes, 0, bytes.Length);
+                    string request = System.Text.Encoding.UTF8.GetString(bytes, 0, bytesReadCount);
+                    Console.WriteLine("resive: {0}", request);
                     string content =
                         "<!doctype html>\r\n" +
                         "<html>\r\n" +
@@ -38,10 +38,10 @@ namespace SimpleServer
                         "Content-Type: text/html\r\n" +
                         "Content-Length: " + content.Length + "\r\n\r\n";
 
-                    var response = System.Text.Encoding.UTF8.GetBytes(data + content);
+                    byte[] response = System.Text.Encoding.UTF8.GetBytes(data + content);
                     stream.Write(response, 0, response.Length);
                     Console.WriteLine("sent: {0}", data);
-                    stream.Close();
+                    //stream.Close();
                     client.Close();
                 }
             }
