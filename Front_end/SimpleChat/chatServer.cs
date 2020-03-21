@@ -9,13 +9,15 @@ namespace ChatServer
     class Client
     {
         internal string clientName { get; private set; }
+        internal bool remuveClient { get; set; }
         internal TcpClient clientTcpClient { get; private set; }
         internal NetworkStream clientStream { get; private set; }       
         public Client(TcpClient tcpClient, NetworkStream Stream, string name)
         {
             clientTcpClient = tcpClient;
             clientName = name;
-            clientStream = Stream;            
+            clientStream = Stream;
+            remuveClient = false;
         }
     }
     class Program
@@ -76,7 +78,15 @@ namespace ChatServer
             {
                 if (client.clientName != name)
                 {
-                    client.clientStream.Write(data, 0, data.Length);
+                    try
+                    {
+                        client.clientStream.Write(data, 0, data.Length);
+                    }
+                    catch (System.IO.IOException e)
+                    {                       
+                        Console.WriteLine(e.Message);                        
+                        client.remuveClient = true;                        
+                    }                    
                 } 
             }
         }
@@ -110,7 +120,12 @@ namespace ChatServer
                         ClientQuit(removedClient.clientName);
                         removedClient = null;
                     }
-                    if (server.Pending())
+                    foreach (Client client in clients)
+                    {
+                        if (client.remuveClient) removedClient = client;
+                    }
+
+                        if (server.Pending())
                     {                       
                         ListenNewConnect(server);
                     }
