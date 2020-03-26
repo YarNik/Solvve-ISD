@@ -25,20 +25,20 @@ namespace ChatClient
                 
                 while (true)
                 {
-                    System.Threading.Thread.Sleep(300);
-                    while (Console.KeyAvailable == false)
-                    {                        
-                        if (stream.DataAvailable)
-                        {
-                            byte[] responseData = new byte[512];
-                            int bytes = stream.Read(responseData, 0, responseData.Length);
-                            string response = System.Text.Encoding.UTF8.GetString(responseData, 0, bytes);
-                            Console.WriteLine(response);
-                        }
+                    System.Threading.Thread.Sleep(300);                                            
+                    if (stream.DataAvailable)
+                    {
+                        byte[] responseData = new byte[512];
+                        int bytes = stream.Read(responseData, 0, responseData.Length);
+                        string response = System.Text.Encoding.UTF8.GetString(responseData, 0, bytes);
+                        Console.WriteLine(response);
+                    }                    
+                    if (Console.KeyAvailable == true)
+                    {
+                        string message = Console.ReadLine();
+                        byte[] dataMessage = System.Text.Encoding.UTF8.GetBytes(message);
+                        stream.Write(dataMessage, 0, dataMessage.Length);
                     }
-                    string message = Console.ReadLine();
-                    byte[] dataMessage = System.Text.Encoding.UTF8.GetBytes(message);                   
-                    stream.Write(dataMessage, 0, dataMessage.Length);                    
                 }                   
             }
             catch (Exception e)
