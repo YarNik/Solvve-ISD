@@ -37,7 +37,14 @@ namespace ChatClient
                     {
                         string message = Console.ReadLine();
                         byte[] dataMessage = System.Text.Encoding.UTF8.GetBytes(message);
-                        stream.Write(dataMessage, 0, dataMessage.Length);
+                        if (message == ".quit")
+                        {
+                            stream.Write(dataMessage, 0, dataMessage.Length);
+                            stream.Close();
+                            client.Close();
+                            break;
+                        }
+                        else stream.Write(dataMessage, 0, dataMessage.Length);
                     }
                 }                   
             }
